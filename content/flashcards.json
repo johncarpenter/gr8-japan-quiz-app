@@ -1,0 +1,284 @@
+{
+  "cards": [
+    {
+      "id": "geo-islands",
+      "category": "Geography",
+      "front": "What are the four main islands of Japan?",
+      "back": "Hokkaido (north), Honshu (largest, central), Shikoku (smallest of the four), and Kyushu (south).",
+      "difficulty": "core"
+    },
+    {
+      "id": "geo-archipelago",
+      "category": "Geography",
+      "front": "What is an archipelago, and how many islands make up Japan?",
+      "back": "An archipelago is a chain of islands. Japan is made up of approximately 6,800 islands.",
+      "difficulty": "core"
+    },
+    {
+      "id": "geo-farming",
+      "category": "Geography",
+      "front": "Why is only about 15% of Japan's land suitable for farming?",
+      "back": "Japan is very mountainous, so most of the land is too steep or rocky for agriculture. The limited flat land is mainly along the coasts.",
+      "difficulty": "important"
+    },
+    {
+      "id": "geo-religions",
+      "category": "Geography",
+      "front": "What are the two main religions practiced in Japan?",
+      "back": "Shintoism (an indigenous religion focused on nature spirits called kami) and Buddhism (introduced from China and Korea).",
+      "difficulty": "core"
+    },
+    {
+      "id": "geo-honour-shame",
+      "category": "Geography",
+      "front": "What is the difference between an honour-based society and a shame-based society in the Japanese context?",
+      "back": "In an honour-based society, people are motivated by gaining honour and respect. In a shame-based society, people are motivated by avoiding shame and disgrace. Japanese society combined both: gaining honour for your family while avoiding bringing shame upon it.",
+      "difficulty": "stretch"
+    },
+    {
+      "id": "unify-three-shoguns",
+      "category": "Unification",
+      "front": "Name the three leaders who unified Japan and one key achievement of each.",
+      "back": "Oda Nobunaga: built castles and established administrative systems. Toyotomi Hideyoshi: introduced the koku tax system, created a rigid class structure, and built a standing army. Tokugawa Ieyasu: made Edo his base and finalized unification, establishing the Tokugawa Shogunate.",
+      "difficulty": "core"
+    },
+    {
+      "id": "unify-ieyasu",
+      "category": "Unification",
+      "front": "How did Tokugawa Ieyasu come to power?",
+      "back": "Tokugawa Ieyasu won the Battle of Sekigahara in 1600 and was named Shogun by the Emperor in 1603. He established the Tokugawa Shogunate, which ruled Japan for over 250 years during the Edo period.",
+      "difficulty": "core"
+    },
+    {
+      "id": "unify-hideyoshi-koku",
+      "category": "Unification",
+      "front": "What was the koku system introduced by Hideyoshi?",
+      "back": "The koku was a tax system based on rice production. One koku was the amount of rice needed to feed one person for one year. Daimyo were ranked by how many koku their domain produced.",
+      "difficulty": "important"
+    },
+    {
+      "id": "gov-emperor-shogun",
+      "category": "Government",
+      "front": "What was the difference between the Emperor and the Shogun in Edo Japan?",
+      "back": "The Emperor was the ceremonial figurehead and spiritual leader of Japan, but had no real political power. The Shogun was the military dictator who held the actual political and military power, ruling from Edo (modern-day Tokyo).",
+      "difficulty": "core"
+    },
+    {
+      "id": "gov-daimyo",
+      "category": "Government",
+      "front": "What was a daimyo?",
+      "back": "A daimyo was a feudal lord who controlled a domain (han) in Japan. They were powerful landowners who owed loyalty to the Shogun and were required to follow strict laws to control their power.",
+      "difficulty": "core"
+    },
+    {
+      "id": "gov-bakufu",
+      "category": "Government",
+      "front": "What was the Bakufu?",
+      "back": "The Bakufu was the centralized military government run by the Shogun. It means 'tent government' and refers to the Tokugawa Shogunate's administration that controlled all of Japan from Edo.",
+      "difficulty": "core"
+    },
+    {
+      "id": "gov-two-levels",
+      "category": "Government",
+      "front": "What were the two levels of government in Edo Japan?",
+      "back": "1) The Han: local government run by each daimyo in their own domain. 2) The Bakufu: the centralized government run by the Shogun from Edo, which had authority over all the han.",
+      "difficulty": "core"
+    },
+    {
+      "id": "gov-control-daimyo",
+      "category": "Government",
+      "front": "Name four laws the Bakufu used to control the daimyo.",
+      "back": "1) No contact allowed between daimyo. 2) Only one castle per domain. 3) Daimyo must fund public building projects. 4) Every daimyo must spend every second year living in Edo (sankin-kotai). 5) All must register at Buddhist temples. 6) Marriages needed Bakufu permission. 7) Travel and shipbuilding were restricted.",
+      "difficulty": "core"
+    },
+    {
+      "id": "gov-sankin-kotai",
+      "category": "Government",
+      "front": "What was the sankin-kotai system and why was it effective?",
+      "back": "Sankin-kotai required every daimyo to spend every second year living in Edo. This kept the daimyo under the Shogun's watch, drained their wealth through travel costs, and their families were essentially held as hostages in Edo when the daimyo returned to their domain.",
+      "difficulty": "important"
+    },
+    {
+      "id": "gov-sovereignty",
+      "category": "Government",
+      "front": "What does sovereignty mean?",
+      "back": "Sovereignty is the authority of a state to govern itself. In Edo Japan, the Shogun held sovereignty over the country, even though the Emperor was the symbolic head of state.",
+      "difficulty": "important"
+    },
+    {
+      "id": "iso-closed-country",
+      "category": "Isolation",
+      "front": "What was the Closed Country Edict of 1635?",
+      "back": "A decree by the Tokugawa Shogunate that severely restricted foreign contact. Its six main rules were: 1) No Japanese could go abroad (death penalty). 2) No Japanese living abroad could return. 3) Christianity must be stamped out. 4) Any person reporting a Christian priest would be rewarded. 5) Foreign ships must be inspected for priests. 6) No offspring of Southern Barbarians (Europeans) could remain in Japan.",
+      "difficulty": "core"
+    },
+    {
+      "id": "iso-why-close",
+      "category": "Isolation",
+      "front": "Why did the Bakufu decide to close Japan to foreigners?",
+      "back": "The Bakufu feared that Christianity, spread by European missionaries, would undermine the social and political order. They also saw how European nations had colonized other parts of Asia and wanted to protect Japan's sovereignty.",
+      "difficulty": "core"
+    },
+    {
+      "id": "iso-edict-definition",
+      "category": "Isolation",
+      "front": "What is an edict?",
+      "back": "An edict is an official order or proclamation issued by a person in authority (in this case, the Shogun). It carries the force of law.",
+      "difficulty": "important"
+    },
+    {
+      "id": "iso-missionaries",
+      "category": "Isolation",
+      "front": "How successful were Christian missionaries in Japan before isolation?",
+      "back": "Very successful. Francis Xavier arrived in 1549, and by 1587, missionaries (especially Portuguese) had converted approximately 150,000 Japanese people to Christianity, mainly in the Nagasaki area.",
+      "difficulty": "important"
+    },
+    {
+      "id": "iso-portugal-first",
+      "category": "Isolation",
+      "front": "When did Europeans first arrive in Japan, and which country were they from?",
+      "back": "The Portuguese were the first Europeans to reach Japan in 1543. They arrived on the island of Tanegashima, south of Kyushu.",
+      "difficulty": "core"
+    },
+    {
+      "id": "iso-not-total",
+      "category": "Isolation",
+      "front": "Was Japan completely isolated during the Closed Country period?",
+      "back": "No. The Chinese and Koreans were permitted limited access to meet with Japanese traders and officials. Some Japanese officials and traders from certain domains were also allowed to visit foreign places like the Ryuku Islands and Korea.",
+      "difficulty": "important"
+    },
+    {
+      "id": "social-hierarchy",
+      "category": "Social Structure",
+      "front": "What was the social hierarchy in Edo Japan from top to bottom?",
+      "back": "Warriors/Courtiers (Emperor, Shogun, Daimyo, Samurai) > Peasantry (farmers) > Artisans/Craftsmen > Merchants/Tradesmen > Townspeople > Non-Humans > Outcasts (eta/hinin). The hierarchy was based on Confucian values, not wealth.",
+      "difficulty": "core"
+    },
+    {
+      "id": "social-merchants",
+      "category": "Social Structure",
+      "front": "Why were merchants ranked near the bottom of the social hierarchy despite often being wealthy?",
+      "back": "The hierarchy was based on Confucian values that prized contribution to society. Merchants were seen as producing nothing — they only bought and sold goods that others made. Farmers and artisans ranked higher because they produced food and useful goods.",
+      "difficulty": "core"
+    },
+    {
+      "id": "social-samurai",
+      "category": "Social Structure",
+      "front": "What happened to samurai during the peaceful Edo period?",
+      "back": "With no wars to fight, many samurai turned their creative energies into intellectual pursuits such as writing prose and poetry. They became administrators and scholars rather than just warriors.",
+      "difficulty": "important"
+    },
+    {
+      "id": "social-hideyoshi-class",
+      "category": "Social Structure",
+      "front": "How did Hideyoshi create a rigid class structure?",
+      "back": "Hideyoshi passed laws that froze the social hierarchy — people could no longer move between social classes. If you were born a farmer, you stayed a farmer. This rigid class system continued throughout the Edo period.",
+      "difficulty": "important"
+    },
+    {
+      "id": "cities-three",
+      "category": "Cities",
+      "front": "What were the 'three metropolises' of Edo Japan?",
+      "back": "Edo (modern Tokyo): the military government centre, a port city called the 'city of water.' Kyoto: the former imperial capital known for luxury items and cultural refinement. Osaka: developed around a protected harbour, called the 'kitchen of Japan' for its wonderful markets.",
+      "difficulty": "core"
+    },
+    {
+      "id": "cities-edo",
+      "category": "Cities",
+      "front": "Why was Edo an important city?",
+      "back": "Edo (modern Tokyo) was the seat of the Shogun's military government. It was a major port city known as the 'city of water' because of its many canals and waterways. It grew to become one of the largest cities in the world.",
+      "difficulty": "core"
+    },
+    {
+      "id": "cities-osaka",
+      "category": "Cities",
+      "front": "Why was Osaka called the 'kitchen of Japan'?",
+      "back": "Osaka was famous for its wonderful food markets. It developed around a protected harbour, was the centre of the Japanese economy, famous for its castle and 150 bridges, and became the centre of the rice market, setting the standard price for rice across Japan.",
+      "difficulty": "important"
+    },
+    {
+      "id": "cities-kyoto",
+      "category": "Cities",
+      "front": "What was Kyoto known for during the Edo period?",
+      "back": "Kyoto was the former imperial capital where the Emperor still resided. It was known for producing luxury items and was considered the centre of cultural refinement, arts, and traditional craftsmanship.",
+      "difficulty": "important"
+    },
+    {
+      "id": "culture-kabuki",
+      "category": "Popular Culture",
+      "front": "What was Kabuki theatre?",
+      "back": "Kabuki was a dramatic form of theatre featuring lively action, wild plots, elaborate costumes and makeup. It was a mirror of Japanese life, often depicting moral dilemmas like the conflict between obligation and happiness. First performed in 1607 by a woman named Okini. In 1629, the Bakufu banned females from the stage.",
+      "difficulty": "core"
+    },
+    {
+      "id": "culture-bunraku",
+      "category": "Popular Culture",
+      "front": "What was Bunraku theatre?",
+      "back": "Bunraku was a type of puppet theatre that was popular with adults. It featured large, elaborate puppets operated by puppeteers dressed in black. It was only performed by non-humans (the puppets).",
+      "difficulty": "important"
+    },
+    {
+      "id": "culture-geisha",
+      "category": "Popular Culture",
+      "front": "What was the role of geishas in Edo Japan?",
+      "back": "Geishas were women trained in dancing, singing, witty conversation, the tea ceremony, and floral arrangement. They were expected to demonstrate all correct forms of etiquette, and their appearance and behaviour reflected the cultural values of the time.",
+      "difficulty": "important"
+    },
+    {
+      "id": "culture-woodblock",
+      "category": "Popular Culture",
+      "front": "How were woodblock prints (ukiyo-e) made?",
+      "back": "The artist carved the major lines and details of a painting into a flat wooden block. Paint was applied to the woodblock, which was then pressed onto canvas or paper to create a print. Many copies could be made, making them inexpensive and available to a wide audience.",
+      "difficulty": "core"
+    },
+    {
+      "id": "culture-why-woodblock",
+      "category": "Popular Culture",
+      "front": "Why did Japan use woodblock printing instead of moveable type, even though moveable type was available?",
+      "back": "Wooden blocks were easier to use with Japanese writing characters (which have thousands of symbols, unlike an alphabet). The blocks also made it possible to include illustrations alongside the printed text.",
+      "difficulty": "stretch"
+    },
+    {
+      "id": "culture-censorship",
+      "category": "Popular Culture",
+      "front": "What restrictions did the Bakufu place on printed materials?",
+      "back": "Printing was a private industry, but the Bakufu made certain subjects taboo: no writings on Christianity, nothing political that might disrupt public order, and nothing offensive to public morals. Popular allowed topics included romance, household advice, social skills, and calendars.",
+      "difficulty": "important"
+    },
+    {
+      "id": "culture-why-flourish",
+      "category": "Popular Culture",
+      "front": "Why did popular culture flourish during the Edo period?",
+      "back": "Cities grew and the merchant class became wealthy and influential. More people desired luxury items and had leisure time for entertainment and fine arts. Daimyo became patrons of the arts, and samurai turned their energies to intellectual and creative pursuits during the long period of peace.",
+      "difficulty": "core"
+    },
+    {
+      "id": "foreign-dutch-dejima",
+      "category": "Foreign Contact",
+      "front": "Why were the Dutch allowed to trade at Deshima while other Europeans were banned?",
+      "back": "The Dutch had not brought missionaries with them, which proved they were only interested in trade, not spreading Christianity. Deshima was an artificial island in Nagasaki harbour — since it wasn't technically Japanese soil, the Bakufu could claim foreigners weren't really on Japanese land.",
+      "difficulty": "core"
+    },
+    {
+      "id": "foreign-chinese-influence",
+      "category": "Foreign Contact",
+      "front": "Whose influence on Japan increased during isolation, and why?",
+      "back": "Chinese influence on Japanese learning and culture increased during isolation because Chinese goods and ideas were among the few allowed into Japan. Many products brought by the Dutch actually came from China, since the Bakufu controlled which merchant groups the Dutch used.",
+      "difficulty": "important"
+    },
+    {
+      "id": "foreign-dutch-medicine",
+      "category": "Foreign Contact",
+      "front": "How did the Dutch influence Japanese medicine?",
+      "back": "The Dutch had a huge influence on Japanese medicine, especially surgery. Before contact with the Dutch, surgery was not part of Japanese medicine because they believed the body was inherited from ancestors and shouldn't be cut. Japanese scholars learned surgical techniques from Dutch surgeons and incorporated this knowledge into their own practices.",
+      "difficulty": "important"
+    },
+    {
+      "id": "foreign-dutch-learning",
+      "category": "Foreign Contact",
+      "front": "What long-term impact did Dutch contact have on Japanese learning?",
+      "back": "The first generation of Japanese scholars who interacted with the Dutch didn't make many immediate changes. However, being exposed to new knowledge changed parts of their worldview, which affected generations to come and helped prepare Japan for eventual modernization.",
+      "difficulty": "stretch"
+    }
+  ]
+}

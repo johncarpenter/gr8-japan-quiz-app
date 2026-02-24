@@ -1,0 +1,140 @@
+{
+  "prompts": [
+    {
+      "id": "why-isolation",
+      "category": "Isolation",
+      "prompt": "Why did the Tokugawa Bakufu decide to close Japan to most foreigners? Explain the specific threats they were trying to prevent.",
+      "rubric": [
+        "European missionaries (especially Portuguese) were converting Japanese people to Christianity",
+        "By 1587, approximately 150,000 Japanese had converted in the Nagasaki area",
+        "The Bakufu feared Christianity would undermine the existing social and political order",
+        "European nations had colonized other parts of Asia — Japan saw this as a warning",
+        "The Bakufu wanted to protect Japan's sovereignty and maintain control"
+      ],
+      "difficulty": "core"
+    },
+    {
+      "id": "closed-country-edict",
+      "category": "Isolation",
+      "prompt": "Describe the main rules of the Closed Country Edict of 1635. What did this edict require and forbid?",
+      "rubric": [
+        "No Japanese person could go abroad (penalty of death)",
+        "No Japanese living abroad could return to Japan",
+        "Christianity must be stamped out/destroyed",
+        "Anyone reporting a Christian priest would be rewarded",
+        "Foreign ships must be inspected for priests",
+        "No offspring of Southern Barbarians (Europeans) could remain in Japan"
+      ],
+      "difficulty": "core"
+    },
+    {
+      "id": "social-hierarchy-explain",
+      "category": "Social Structure",
+      "prompt": "Explain why merchants were ranked near the bottom of the social hierarchy in Edo Japan, even though many of them were wealthy. What does this tell us about Edo Japanese values?",
+      "rubric": [
+        "The social hierarchy was based on Confucian values, not wealth",
+        "Merchants were seen as producing nothing — they only bought and sold goods others made",
+        "Farmers and artisans were ranked higher because they produced food and useful goods",
+        "Despite low social rank, merchants often had more money than samurai",
+        "This shows Edo Japan valued contribution to society and loyalty over individual wealth"
+      ],
+      "difficulty": "core"
+    },
+    {
+      "id": "control-daimyo",
+      "category": "Government",
+      "prompt": "How did the Tokugawa Bakufu maintain control over the powerful daimyo (feudal lords)? Describe at least four specific laws or strategies they used.",
+      "rubric": [
+        "No contact was allowed between daimyo (to prevent alliances)",
+        "Only one castle allowed per domain (limiting military strength)",
+        "Daimyo had to spend every second year living in Edo (sankin-kotai) — kept them under watch and drained their wealth",
+        "Daimyo had to fund public building projects (reducing their resources)",
+        "All marriages of daimyo needed Bakufu permission",
+        "All must register at Buddhist temples (surveillance)",
+        "Travel and shipbuilding were restricted"
+      ],
+      "difficulty": "core"
+    },
+    {
+      "id": "two-levels-government",
+      "category": "Government",
+      "prompt": "Explain the two levels of government that existed in Edo Japan. How did they work together, and who was in charge at each level?",
+      "rubric": [
+        "The Han was the local level of government, run by the daimyo in each domain",
+        "The Bakufu was the centralized government, run by the Shogun from Edo",
+        "The Bakufu had authority over all the han and could enforce laws on daimyo",
+        "The Emperor existed as a figurehead/spiritual leader but had no real political power",
+        "The Shogun held the real political and military power over all of Japan"
+      ],
+      "difficulty": "core"
+    },
+    {
+      "id": "popular-culture-flourish",
+      "category": "Popular Culture",
+      "prompt": "Why did popular culture (Kabuki theatre, woodblock prints, Bunraku) flourish during the Edo period? What conditions made this possible?",
+      "rubric": [
+        "The long period of peace meant people had more leisure time",
+        "Cities grew and the merchant class became wealthy and influential",
+        "More people desired luxury items and entertainment",
+        "Daimyo became patrons of the arts, funding cultural activities",
+        "Samurai turned their creative energies to intellectual pursuits like prose and poetry",
+        "Woodblock printing made art affordable and widely available"
+      ],
+      "difficulty": "core"
+    },
+    {
+      "id": "dutch-on-deshima",
+      "category": "Foreign Contact",
+      "prompt": "The Dutch were allowed to set up a trading post on Deshima island during Japan's period of isolation. Why were they given this special treatment? What made Deshima a clever solution for the Bakufu?",
+      "rubric": [
+        "The Dutch had not brought missionaries, proving they were only interested in trade",
+        "Unlike the Portuguese and Spanish, the Dutch did not try to spread Christianity",
+        "Deshima was an artificial island, so it was technically not Japanese soil",
+        "This meant the Bakufu could claim foreigners were not really on Japanese land",
+        "The arrangement let Japan benefit from trade while maintaining the closed country policy"
+      ],
+      "difficulty": "important"
+    },
+    {
+      "id": "three-shoguns-unification",
+      "category": "Unification",
+      "prompt": "Describe how the three great leaders — Oda Nobunaga, Toyotomi Hideyoshi, and Tokugawa Ieyasu — each contributed to the unification of Japan.",
+      "rubric": [
+        "Oda Nobunaga began the process by conquering territories and building castles and administrative systems",
+        "Toyotomi Hideyoshi continued unification by introducing the koku tax system based on rice production",
+        "Hideyoshi created a rigid class structure that froze social mobility",
+        "Hideyoshi also built a standing army",
+        "Tokugawa Ieyasu finalized unification after winning the Battle of Sekigahara in 1600",
+        "Ieyasu established the Tokugawa Shogunate in 1603 with Edo as the capital"
+      ],
+      "difficulty": "core"
+    },
+    {
+      "id": "foreign-influence-despite-isolation",
+      "category": "Foreign Contact",
+      "prompt": "Even though Japan had a policy of isolation, foreign influence still reached the country. Explain how outside ideas and knowledge entered Japan during the Closed Country period.",
+      "rubric": [
+        "The Dutch traded from Deshima island and shared knowledge, especially in medicine and surgery",
+        "Chinese and Korean traders were permitted limited access to Japan",
+        "Some Japanese officials could visit foreign places like the Ryuku Islands and Korea",
+        "Chinese influence actually increased because their goods and ideas were among the few allowed in",
+        "Dutch surgeons taught Japanese scholars new medical techniques, changing their understanding of the body",
+        "Exposure to foreign ideas changed Japanese scholars' worldview, affecting future generations"
+      ],
+      "difficulty": "important"
+    },
+    {
+      "id": "three-metropolises",
+      "category": "Cities",
+      "prompt": "Describe the three metropolises of Edo Japan — Edo, Kyoto, and Osaka. What was each city known for, and why was it important?",
+      "rubric": [
+        "Edo was the seat of the Shogun's military government, a port city known as the 'city of water'",
+        "Kyoto was the former imperial capital where the Emperor resided, known for luxury items and cultural refinement",
+        "Osaka developed around a protected harbour and became the centre of the Japanese economy",
+        "Osaka was called the 'kitchen of Japan' for its wonderful markets",
+        "Osaka was famous for its castle, 150 bridges, and for setting the standard rice price"
+      ],
+      "difficulty": "important"
+    }
+  ]
+}

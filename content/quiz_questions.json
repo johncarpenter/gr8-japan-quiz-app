@@ -1,0 +1,289 @@
+{
+  "questions": [
+    {
+      "id": "mc-islands",
+      "type": "multiple_choice",
+      "category": "Geography",
+      "question": "Which of the following is the largest of Japan's four main islands?",
+      "options": ["Hokkaido", "Honshu", "Shikoku", "Kyushu"],
+      "correct": 1,
+      "explanation": "Honshu is the largest and most central of Japan's four main islands. It is home to major cities like Tokyo (Edo), Kyoto, and Osaka.",
+      "difficulty": "core"
+    },
+    {
+      "id": "mc-archipelago",
+      "type": "multiple_choice",
+      "category": "Geography",
+      "question": "Approximately how many islands make up the Japanese archipelago?",
+      "options": ["680", "1,200", "6,800", "10,000"],
+      "correct": 2,
+      "explanation": "Japan is an archipelago (chain of islands) made up of approximately 6,800 islands, though only the four main islands are heavily populated.",
+      "difficulty": "important"
+    },
+    {
+      "id": "sa-farming",
+      "type": "short_answer",
+      "category": "Geography",
+      "question": "Why is only about 15% of Japan's land suitable for farming?",
+      "expected_answer": "Japan is very mountainous, so most of the land is too steep or rocky for agriculture.",
+      "keywords": ["mountain", "mountainous", "steep", "rocky"],
+      "explanation": "Japan's terrain is dominated by mountains, leaving only about 15% of the land flat enough for farming, mainly along the coasts and in river valleys.",
+      "difficulty": "core"
+    },
+    {
+      "id": "mc-religions",
+      "type": "multiple_choice",
+      "category": "Geography",
+      "question": "What are the two main religions practiced in Japan?",
+      "options": [
+        "Christianity and Islam",
+        "Shintoism and Buddhism",
+        "Hinduism and Confucianism",
+        "Taoism and Shintoism"
+      ],
+      "correct": 1,
+      "explanation": "Shintoism is the indigenous religion of Japan focused on nature spirits (kami), while Buddhism was introduced from China and Korea. Many Japanese practiced both.",
+      "difficulty": "core"
+    },
+    {
+      "id": "mc-shogun-unify",
+      "type": "multiple_choice",
+      "category": "Unification",
+      "question": "Which leader finalized the unification of Japan and established the Tokugawa Shogunate?",
+      "options": [
+        "Oda Nobunaga",
+        "Toyotomi Hideyoshi",
+        "Tokugawa Ieyasu",
+        "Francis Xavier"
+      ],
+      "correct": 2,
+      "explanation": "Tokugawa Ieyasu won the Battle of Sekigahara in 1600 and was named Shogun in 1603. He established the Tokugawa Shogunate, which ruled Japan for over 250 years.",
+      "difficulty": "core"
+    },
+    {
+      "id": "sa-hideyoshi",
+      "type": "short_answer",
+      "category": "Unification",
+      "question": "What three key changes did Toyotomi Hideyoshi introduce to Japan?",
+      "expected_answer": "The koku tax system (based on rice production), a rigid class structure (people could not change social class), and a standing army.",
+      "keywords": ["koku", "tax", "class", "army"],
+      "explanation": "Hideyoshi introduced the koku tax system based on rice, froze the social hierarchy so people could not move between classes, and created Japan's first standing army.",
+      "difficulty": "core"
+    },
+    {
+      "id": "mc-real-power",
+      "type": "multiple_choice",
+      "category": "Government",
+      "question": "Who held the real political power in Edo Japan?",
+      "options": [
+        "The Emperor",
+        "The Daimyo",
+        "The Shogun",
+        "The Samurai"
+      ],
+      "correct": 2,
+      "explanation": "While the Emperor was the ceremonial figurehead and spiritual leader, the Shogun held the real political and military power. The Tokugawa Shogun ruled from Edo (modern-day Tokyo).",
+      "difficulty": "core"
+    },
+    {
+      "id": "sa-bakufu",
+      "type": "short_answer",
+      "category": "Government",
+      "question": "What was the Bakufu?",
+      "expected_answer": "The Bakufu was the centralized military government run by the Shogun from Edo. It means 'tent government.'",
+      "keywords": ["military", "government", "shogun", "centralized"],
+      "explanation": "The Bakufu (meaning 'tent government') was the centralized military government run by the Shogun. It controlled all of Japan from Edo and had authority over all the local domains (han).",
+      "difficulty": "core"
+    },
+    {
+      "id": "mc-two-levels",
+      "type": "multiple_choice",
+      "category": "Government",
+      "question": "What were the two levels of government in Edo Japan?",
+      "options": [
+        "The Emperor and the Shogun",
+        "The Han (local) and the Bakufu (central)",
+        "The Daimyo and the Samurai",
+        "The Senate and the Assembly"
+      ],
+      "correct": 1,
+      "explanation": "The Han was the local level of government run by each daimyo in their domain. The Bakufu was the centralized government run by the Shogun from Edo, with authority over all the han.",
+      "difficulty": "core"
+    },
+    {
+      "id": "sa-control-daimyo",
+      "type": "short_answer",
+      "category": "Government",
+      "question": "Name two laws the Bakufu used to control the daimyo.",
+      "expected_answer": "Daimyo had to spend every second year in Edo (sankin-kotai), could only have one castle per domain, no contact between daimyo, marriages needed Bakufu permission, must fund public building projects.",
+      "keywords": ["edo", "castle", "contact", "marriage", "building", "sankin", "travel", "shipbuilding", "temple"],
+      "explanation": "The Bakufu controlled daimyo through many laws: no contact between daimyo, one castle per domain, spending every second year in Edo, funding public projects, registering at Buddhist temples, needing permission for marriages, and restrictions on travel and shipbuilding.",
+      "difficulty": "core"
+    },
+    {
+      "id": "mc-edict-year",
+      "type": "multiple_choice",
+      "category": "Isolation",
+      "question": "In what year was the Closed Country Edict issued?",
+      "options": ["1543", "1603", "1635", "1868"],
+      "correct": 2,
+      "explanation": "The Closed Country Edict (Sakoku) was issued in 1635 by the Tokugawa Shogunate, severely restricting foreign contact and banning most foreigners from Japan.",
+      "difficulty": "core"
+    },
+    {
+      "id": "sa-why-close",
+      "type": "short_answer",
+      "category": "Isolation",
+      "question": "What was the main reason the Bakufu decided to close Japan to foreigners?",
+      "expected_answer": "They feared Christianity, spread by European missionaries, would undermine the social and political order. They also feared European colonization.",
+      "keywords": ["christianity", "christian", "missionaries", "religion", "coloniz"],
+      "explanation": "The Bakufu saw Christianity as a threat to their power and the social order. European missionaries had converted approximately 150,000 Japanese. The Bakufu also saw how Europeans had colonized other Asian nations and wanted to prevent the same fate.",
+      "difficulty": "core"
+    },
+    {
+      "id": "mc-first-europeans",
+      "type": "multiple_choice",
+      "category": "Isolation",
+      "question": "Which European country first reached Japan, and in what year?",
+      "options": [
+        "Spain in 1520",
+        "Portugal in 1543",
+        "The Netherlands in 1600",
+        "England in 1550"
+      ],
+      "correct": 1,
+      "explanation": "The Portuguese were the first Europeans to reach Japan in 1543, arriving on the island of Tanegashima south of Kyushu.",
+      "difficulty": "core"
+    },
+    {
+      "id": "sa-missionaries",
+      "type": "short_answer",
+      "category": "Isolation",
+      "question": "How many Japanese people did Christian missionaries convert before isolation, and in which area?",
+      "expected_answer": "Approximately 150,000 people, mainly in the Nagasaki area.",
+      "keywords": ["150000", "150,000", "nagasaki"],
+      "explanation": "Francis Xavier arrived in 1549, and by 1587, missionaries (especially Portuguese) had converted approximately 150,000 Japanese people in the Nagasaki area, which alarmed the Bakufu.",
+      "difficulty": "important"
+    },
+    {
+      "id": "mc-social-bottom",
+      "type": "multiple_choice",
+      "category": "Social Structure",
+      "question": "Why were merchants ranked near the bottom of the Edo social hierarchy?",
+      "options": [
+        "They were foreigners",
+        "They did not produce anything — they only bought and sold goods others made",
+        "They refused to pay taxes",
+        "They were not loyal to the Shogun"
+      ],
+      "correct": 1,
+      "explanation": "Based on Confucian values, the social hierarchy prized contribution to society. Merchants were seen as producing nothing, merely profiting from others' work. Farmers and artisans ranked higher because they produced food and goods.",
+      "difficulty": "core"
+    },
+    {
+      "id": "sa-hierarchy-order",
+      "type": "short_answer",
+      "category": "Social Structure",
+      "question": "List the Edo period social hierarchy from top to bottom.",
+      "expected_answer": "Warriors/Courtiers (Emperor, Shogun, Daimyo, Samurai) > Peasants/Farmers > Artisans/Craftsmen > Merchants > Townspeople > Non-Humans > Outcasts",
+      "keywords": ["warrior", "samurai", "farmer", "peasant", "artisan", "merchant"],
+      "explanation": "The rigid social hierarchy placed warriors and courtiers at the top, followed by peasants (farmers), artisans/craftsmen, merchants/tradesmen, townspeople, non-humans, and outcasts (eta/hinin) at the bottom.",
+      "difficulty": "core"
+    },
+    {
+      "id": "mc-three-cities",
+      "type": "multiple_choice",
+      "category": "Cities",
+      "question": "Which three cities were known as the 'three metropolises' of Edo Japan?",
+      "options": [
+        "Nagasaki, Nara, Kamakura",
+        "Edo, Kyoto, Osaka",
+        "Hokkaido, Edo, Nagasaki",
+        "Osaka, Nagasaki, Kyoto"
+      ],
+      "correct": 1,
+      "explanation": "Edo (military government centre), Kyoto (former imperial capital, cultural refinement), and Osaka (economic centre, 'kitchen of Japan') were the three most important cities.",
+      "difficulty": "core"
+    },
+    {
+      "id": "sa-osaka",
+      "type": "short_answer",
+      "category": "Cities",
+      "question": "Why was Osaka called the 'kitchen of Japan'?",
+      "expected_answer": "Osaka had wonderful markets and was the centre of the Japanese economy. It became the centre of the rice market, setting the standard price for rice.",
+      "keywords": ["market", "food", "economy", "rice"],
+      "explanation": "Osaka developed around a protected harbour and became the centre of the Japanese economy. It was famous for its markets, castle, 150 bridges, and for setting the standard rice price across Japan.",
+      "difficulty": "important"
+    },
+    {
+      "id": "mc-kabuki",
+      "type": "multiple_choice",
+      "category": "Popular Culture",
+      "question": "Why did the Bakufu ban women from performing Kabuki theatre in 1629?",
+      "options": [
+        "Women were not skilled enough",
+        "They believed public morality was being corrupted by female actresses",
+        "Women were needed for farming",
+        "The Emperor requested it"
+      ],
+      "correct": 1,
+      "explanation": "The first Kabuki was performed in 1607 by a woman named Okini. However, in 1629, the Bakufu banned females from the stage because they believed public morality was being corrupted. After this, all Kabuki roles were played by men.",
+      "difficulty": "important"
+    },
+    {
+      "id": "sa-woodblock",
+      "type": "short_answer",
+      "category": "Popular Culture",
+      "question": "Why did Japan prefer woodblock printing over moveable type printing?",
+      "expected_answer": "Wooden blocks were easier to use with Japanese writing characters, and they could include illustrations alongside the text.",
+      "keywords": ["character", "japanese", "writing", "illustration"],
+      "explanation": "Although moveable type was available from the late 15th century, by 1626 woodblock printing returned because Japanese characters were better suited to carved blocks (unlike an alphabet with limited letters), and blocks could combine text with illustrations.",
+      "difficulty": "stretch"
+    },
+    {
+      "id": "mc-dutch-trade",
+      "type": "multiple_choice",
+      "category": "Foreign Contact",
+      "question": "Why were the Dutch the only Western nation allowed to trade with Japan during isolation?",
+      "options": [
+        "They had the largest navy",
+        "They offered the best prices",
+        "They did not bring missionaries and were only interested in trade",
+        "They had a treaty signed before the edict"
+      ],
+      "correct": 2,
+      "explanation": "The Dutch had not brought missionaries, proving they were only interested in trade, not spreading Christianity. They were confined to Deshima, an artificial island in Nagasaki harbour.",
+      "difficulty": "core"
+    },
+    {
+      "id": "sa-deshima",
+      "type": "short_answer",
+      "category": "Foreign Contact",
+      "question": "What was Deshima, and why was it significant?",
+      "expected_answer": "Deshima was a small artificial island in Nagasaki harbour where the Dutch were allowed to trade. Because it was artificial, it was not considered Japanese soil, so foreigners were technically not on Japanese land.",
+      "keywords": ["artificial", "island", "nagasaki", "dutch", "trade"],
+      "explanation": "Deshima was an artificial island in Nagasaki harbour. The Dutch were confined there for trading. Since it was man-made, the Bakufu considered it not truly Japanese soil, allowing them to technically maintain the closed country policy while still benefiting from trade.",
+      "difficulty": "core"
+    },
+    {
+      "id": "mc-dutch-medicine",
+      "type": "multiple_choice",
+      "category": "Foreign Contact",
+      "question": "In which field did the Dutch have the greatest influence on Japanese learning?",
+      "options": ["Architecture", "Medicine and surgery", "Military strategy", "Agriculture"],
+      "correct": 1,
+      "explanation": "The Dutch had a huge influence on Japanese medicine, especially surgery. Before Dutch contact, surgery was not part of Japanese medicine because they believed the body was inherited from ancestors and shouldn't be cut.",
+      "difficulty": "important"
+    },
+    {
+      "id": "sa-chinese-influence",
+      "type": "short_answer",
+      "category": "Foreign Contact",
+      "question": "Whose influence on Japanese culture actually increased during the period of isolation, and why?",
+      "expected_answer": "Chinese influence increased because Chinese goods and ideas were among the few allowed into Japan. Many products brought by Dutch traders also came from China.",
+      "keywords": ["chinese", "china"],
+      "explanation": "Chinese influence on Japanese learning and culture increased during isolation because Chinese goods and ideas were the few allowed in. Many products brought by Dutch traders actually originated from China, since the Bakufu controlled which merchant groups the Dutch could use.",
+      "difficulty": "important"
+    }
+  ]
+}
