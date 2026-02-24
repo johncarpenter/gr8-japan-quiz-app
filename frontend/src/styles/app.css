@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./kawaii.css";
 
 @theme {
   --font-nunito: "Nunito", sans-serif;
@@ -35,6 +36,14 @@
   --color-amber-400: #fbbf24;
   --color-amber-500: #f59e0b;
 
+  /* Rainbow / nyan palette */
+  --color-nyan-red: #ff6b81;
+  --color-nyan-orange: #ffa502;
+  --color-nyan-yellow: #fbbf24;
+  --color-nyan-green: #34d399;
+  --color-nyan-blue: #38bdf8;
+  --color-nyan-purple: #a78bfa;
+
   --color-surface: #fff5f7;
   --color-surface-card: #ffffff;
   --color-surface-hover: #ffe0e6;
@@ -45,6 +54,7 @@
 /* Base styles */
 body {
   font-family: var(--font-nunito);
+  font-size: 1.075rem;
   background: var(--color-surface);
   color: var(--color-text-primary);
   min-height: 100vh;

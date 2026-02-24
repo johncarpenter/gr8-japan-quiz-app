@@ -1,5 +1,14 @@
 import { useState, useEffect } from "react";
 import { useApi } from "../hooks/useApi.js";
+import KawaiiCat from "./kawaii/KawaiiCat.jsx";
+import { SparkBurst, FloatingHearts, RainbowExplosion } from "./kawaii/ParticleEffects.jsx";
+
+const HAPPY_SPEECH = ["Nyan~!", "Sugoi!", "Pawfect!", "Yatta!", "Meow-velous!"];
+const ENCOURAGE_SPEECH = ["Ganbatte!", "You can do it!", "Almost nyan~!", "Don't give up!"];
+
+function pickRandom(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
 
 export default function ExplainMode() {
   const { get, post, loading, error, clearError } = useApi();
@@ -9,8 +18,16 @@ export default function ExplainMode() {
   const [feedback, setFeedback] = useState(null);
   const [showMissed, setShowMissed] = useState(false);
   const [showModel, setShowModel] = useState(false);
-  const [results, setResults] = useState([]); // track scores for summary
-  const [phase, setPhase] = useState("answering"); // answering | feedback | summary
+  const [results, setResults] = useState([]);
+  const [phase, setPhase] = useState("answering");
+
+  // Kawaii state
+  const [catMood, setCatMood] = useState("idle");
+  const [catSpeech, setCatSpeech] = useState(null);
+  const [sparkTrigger, setSparkTrigger] = useState(0);
+  const [heartTrigger, setHeartTrigger] = useState(0);
+  const [confettiTrigger, setConfettiTrigger] = useState(0);
+  const [confettiIntensity, setConfettiIntensity] = useState("small");
 
   useEffect(() => {
     loadPrompts();
@@ -19,6 +36,32 @@ export default function ExplainMode() {
   async function loadPrompts() {
     const data = await get("/api/explain/prompts");
     if (data) setPrompts(data);
+  }
+
+  function triggerScoreReaction(score, total) {
+    const ratio = score / total;
+    if (ratio >= 0.8) {
+      setCatMood("celebrating");
+      setCatSpeech(pickRandom(HAPPY_SPEECH));
+      setSparkTrigger((t) => t + 1);
+      if (ratio === 1) {
+        setConfettiIntensity("medium");
+        setConfettiTrigger((t) => t + 1);
+      }
+    } else if (ratio >= 0.5) {
+      setCatMood("happy");
+      setCatSpeech("Good job!");
+      setSparkTrigger((t) => t + 1);
+    } else {
+      setCatMood("encouraging");
+      setCatSpeech(pickRandom(ENCOURAGE_SPEECH));
+      setHeartTrigger((t) => t + 1);
+    }
+
+    setTimeout(() => {
+      setCatMood("idle");
+      setCatSpeech(null);
+    }, 2500);
   }
 
   async function handleSubmit() {
@@ -33,6 +76,7 @@ export default function ExplainMode() {
       setFeedback(result);
       setPhase("feedback");
       setResults((prev) => [...prev, { promptId: prompt.id, category: prompt.category, ...result }]);
+      triggerScoreReaction(result.score, result.total);
     }
   }
 
@@ -42,8 +86,9 @@ export default function ExplainMode() {
     setShowMissed(false);
     setShowModel(false);
     setPhase("answering");
-    // Remove last result since they're retrying
     setResults((prev) => prev.slice(0, -1));
+    setCatMood("idle");
+    setCatSpeech(null);
   }
 
   function handleNext() {
@@ -56,6 +101,8 @@ export default function ExplainMode() {
       setShowMissed(false);
       setShowModel(false);
       setPhase("answering");
+      setCatMood("idle");
+      setCatSpeech(null);
     }
   }
 
@@ -67,9 +114,10 @@ export default function ExplainMode() {
     setShowModel(false);
     setResults([]);
     setPhase("answering");
+    setCatMood("idle");
+    setCatSpeech(null);
   }
 
-  // Handle Ctrl+Enter submit
   function handleKeyDown(e) {
     if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) {
       e.preventDefault();
@@ -94,15 +142,25 @@ export default function ExplainMode() {
         : 0;
     const pct = Math.round(avgScore * 100);
 
+    // Determine tier for summary
+    const summaryMood = pct >= 80 ? "celebrating" : pct >= 50 ? "happy" : "encouraging";
+    const summarySpeech = pct >= 80 ? "Amazing nyan~!" : pct >= 50 ? "Good job!" : "You can do it!";
+    const summaryConfetti = pct >= 80 ? "medium" : pct >= 50 ? "small" : null;
+
     return (
       <div className="space-y-6 animate-slide-in">
+        {summaryConfetti && <RainbowExplosion trigger={1} intensity={summaryConfetti} />}
+
         <div
-          className={`rounded-2xl p-8 text-center ${
+          className={`rounded-2xl p-8 text-center relative overflow-visible ${
             pct >= 80 ? "bg-mint-100" : pct >= 50 ? "bg-amber-100" : "bg-sakura-100"
           }`}
         >
-          <div className="text-5xl mb-3">
-            {pct >= 80 ? "\uD83C\uDF89" : pct >= 50 ? "\uD83C\uDF1F" : "\uD83D\uDCAA"}
+          {pct < 50 && <FloatingHearts trigger={1} />}
+          {pct >= 50 && <SparkBurst trigger={1} count={10} />}
+
+          <div className="flex justify-center mb-3">
+            <KawaiiCat mood={summaryMood} size="lg" speechBubble={summarySpeech} />
           </div>
           <div className="text-3xl font-extrabold text-text-primary animate-count-up">
             {pct}% Average
@@ -160,7 +218,6 @@ export default function ExplainMode() {
   const prompt = prompts[currentIndex];
   if (!prompt) return null;
 
-  // Score color
   function scoreColor(score, total) {
     const ratio = score / total;
     if (ratio >= 0.75) return "text-mint-500 bg-mint-100";
@@ -170,6 +227,8 @@ export default function ExplainMode() {
 
   return (
     <div className="space-y-4">
+      <RainbowExplosion trigger={confettiTrigger} intensity={confettiIntensity} />
+
       {/* Header */}
       <div className="flex items-center justify-between">
         <span className="text-sm font-bold text-text-primary">
@@ -228,6 +287,13 @@ export default function ExplainMode() {
       {/* Feedback */}
       {phase === "feedback" && feedback && (
         <div className="space-y-3 animate-slide-in">
+          {/* Cat reaction */}
+          <div className="flex justify-center relative">
+            <KawaiiCat mood={catMood} size="sm" speechBubble={catSpeech} />
+            <SparkBurst trigger={sparkTrigger} count={8} />
+            <FloatingHearts trigger={heartTrigger} />
+          </div>
+
           {/* Score */}
           <div
             className={`flex items-center gap-3 p-4 rounded-2xl ${scoreColor(feedback.score, feedback.total)}`}
@@ -261,7 +327,6 @@ export default function ExplainMode() {
               <p className="text-sm font-bold text-amber-600 mb-1">What's missing</p>
               <p className="text-sm text-text-primary">{feedback.hint}</p>
 
-              {/* Collapsible: show missed points */}
               {feedback.points_missed.length > 0 && (
                 <div className="mt-3">
                   <button

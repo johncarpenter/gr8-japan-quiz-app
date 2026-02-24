@@ -1,0 +1,446 @@
+/* ============================================
+   Kawaii Cat Animation System
+   Over-the-top cute cat/nyan themed animations
+   ============================================ */
+
+/* --- Sparkle burst: particles fly outward from center --- */
+@keyframes sparkle-burst {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--tx), var(--ty)) scale(0);
+  }
+}
+
+.sparkle-particle {
+  position: absolute;
+  pointer-events: none;
+  animation: sparkle-burst 0.6s ease-out forwards;
+}
+
+/* --- Float drift: ambient elements drift upward with wobble --- */
+@keyframes float-drift {
+  0% {
+    transform: translateY(100vh) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: var(--float-opacity, 0.12);
+  }
+  50% {
+    transform: translateY(50vh) translateX(15px) rotate(180deg);
+  }
+  90% {
+    opacity: var(--float-opacity, 0.12);
+  }
+  100% {
+    transform: translateY(-20px) translateX(-10px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.float-element {
+  position: fixed;
+  pointer-events: none;
+  z-index: 0;
+  animation: float-drift var(--float-duration, 12s) linear infinite;
+  animation-delay: var(--float-delay, 0s);
+  opacity: 0;
+}
+
+/* --- Happy wiggle: celebratory card shake --- */
+@keyframes happy-wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  15% { transform: rotate(-3deg); }
+  30% { transform: rotate(3deg); }
+  45% { transform: rotate(-2deg); }
+  60% { transform: rotate(2deg); }
+  75% { transform: rotate(-1deg); }
+  90% { transform: rotate(1deg); }
+}
+
+.animate-happy-wiggle {
+  animation: happy-wiggle 0.5s ease-in-out;
+}
+
+/* --- Gentle shake: subtle wrong-answer shake --- */
+@keyframes gentle-shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-4px); }
+  40% { transform: translateX(4px); }
+  60% { transform: translateX(-3px); }
+  80% { transform: translateX(3px); }
+}
+
+.animate-gentle-shake {
+  animation: gentle-shake 0.4s ease-in-out;
+}
+
+/* --- Bounce in: scale overshoot entrance --- */
+@keyframes bounce-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-bounce-in {
+  animation: bounce-in 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* --- Pop in: quick scale pop for streak badge --- */
+@keyframes pop-in {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-pop-in {
+  animation: pop-in 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* --- Glow pulse: button success glow --- */
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(52, 211, 153, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(52, 211, 153, 0.6), 0 0 40px rgba(52, 211, 153, 0.2);
+  }
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 1s ease-in-out 2;
+}
+
+/* --- Nyan fly: cat flies across screen --- */
+@keyframes nyan-fly {
+  0% {
+    transform: translateX(-120px) translateY(0);
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(50vw) translateY(-30px);
+  }
+  95% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(calc(100vw + 120px)) translateY(0);
+    opacity: 0;
+  }
+}
+
+.animate-nyan-fly {
+  animation: nyan-fly 2s ease-in-out forwards;
+}
+
+/* --- Rainbow trail: scrolling rainbow gradient --- */
+@keyframes rainbow-trail {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+.rainbow-trail {
+  background: linear-gradient(
+    90deg,
+    #ff6b81, #fbbf24, #34d399, #38bdf8, #a78bfa, #ff6b81
+  );
+  background-size: 200% 100%;
+  animation: rainbow-trail 2s linear infinite;
+}
+
+/* --- Cat part animations --- */
+@keyframes ear-wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-8deg); }
+  75% { transform: rotate(8deg); }
+}
+
+.animate-ear-wiggle {
+  animation: ear-wiggle 0.4s ease-in-out;
+  transform-origin: bottom center;
+}
+
+@keyframes tail-wag {
+  0%, 100% { transform: rotate(-15deg); }
+  50% { transform: rotate(15deg); }
+}
+
+.animate-tail-wag {
+  animation: tail-wag 1s ease-in-out infinite;
+  transform-origin: top center;
+}
+
+.animate-tail-wag-fast {
+  animation: tail-wag 0.4s ease-in-out infinite;
+  transform-origin: top center;
+}
+
+@keyframes eye-sparkle {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.15); }
+}
+
+.animate-eye-sparkle {
+  animation: eye-sparkle 0.8s ease-in-out infinite;
+}
+
+/* --- Speech bubble pop-in --- */
+@keyframes speech-bubble-in {
+  0% {
+    opacity: 0;
+    transform: scale(0) translateY(10px);
+  }
+  60% {
+    transform: scale(1.1) translateY(-2px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-speech-bubble {
+  animation: speech-bubble-in 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* --- Heart float: hearts rising upward --- */
+@keyframes heart-float {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-60px) scale(0.6);
+  }
+}
+
+.heart-particle {
+  position: absolute;
+  pointer-events: none;
+  animation: heart-float 1.2s ease-out forwards;
+}
+
+/* --- Petal fall: sakura petals drifting down --- */
+@keyframes petal-fall {
+  0% {
+    transform: translateY(-20px) rotate(0deg) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg) translateX(40px);
+    opacity: 0;
+  }
+}
+
+/* --- Cat bounce (celebrating jump) --- */
+@keyframes cat-bounce {
+  0%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-12px); }
+  50% { transform: translateY(-8px); }
+  70% { transform: translateY(-4px); }
+}
+
+.animate-cat-bounce {
+  animation: cat-bounce 0.5s ease-out;
+}
+
+/* --- Cat double jump (streak 2-3) --- */
+@keyframes cat-double-jump {
+  0%, 100% { transform: translateY(0); }
+  20% { transform: translateY(-15px); }
+  35% { transform: translateY(-5px); }
+  55% { transform: translateY(-20px); }
+  75% { transform: translateY(-5px); }
+}
+
+.animate-cat-double-jump {
+  animation: cat-double-jump 0.7s ease-out;
+}
+
+/* --- Rainbow shimmer for progress bar --- */
+@keyframes rainbow-shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+.progress-rainbow {
+  background: linear-gradient(
+    90deg,
+    #ff6b81, #fbbf24, #34d399, #38bdf8, #a78bfa, #ff6b81
+  ) !important;
+  background-size: 200% 100% !important;
+  animation: rainbow-shimmer 1.5s linear infinite;
+}
+
+/* --- Tab nyan transition --- */
+@keyframes tab-nyan-zip {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-tab-nyan {
+  animation: tab-nyan-zip 0.4s ease-out;
+}
+
+/* --- Streak badge fire pulse --- */
+@keyframes fire-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.animate-fire-pulse {
+  animation: fire-pulse 0.8s ease-in-out infinite;
+}
+
+/* --- Rainbow border for high streaks --- */
+.rainbow-border {
+  position: relative;
+  z-index: 1;
+}
+
+.rainbow-border::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(
+    90deg,
+    #ff6b81, #fbbf24, #34d399, #38bdf8, #a78bfa, #ff6b81
+  );
+  background-size: 200% 100%;
+  animation: rainbow-trail 1.5s linear infinite;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  z-index: -1;
+}
+
+/* --- Blink animation for cat eyes --- */
+@keyframes blink {
+  0%, 90%, 100% { transform: scaleY(1); }
+  95% { transform: scaleY(0.1); }
+}
+
+.animate-blink {
+  animation: blink 3s ease-in-out infinite;
+  transform-origin: center;
+}
+
+/* --- Head tilt for thinking --- */
+@keyframes head-tilt {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(8deg); }
+}
+
+.animate-head-tilt {
+  animation: head-tilt 2s ease-in-out infinite;
+}
+
+/* --- Background rainbow pulse --- */
+@keyframes bg-rainbow-pulse {
+  0%, 100% {
+    background-color: transparent;
+  }
+  25% {
+    background-color: rgba(255, 107, 129, 0.05);
+  }
+  50% {
+    background-color: rgba(167, 139, 250, 0.05);
+  }
+  75% {
+    background-color: rgba(52, 211, 153, 0.05);
+  }
+}
+
+.animate-bg-rainbow-pulse {
+  animation: bg-rainbow-pulse 2s ease-in-out;
+}
+
+/* ============================================
+   Accessibility: Reduced Motion
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  .sparkle-particle,
+  .float-element,
+  .heart-particle,
+  .animate-happy-wiggle,
+  .animate-gentle-shake,
+  .animate-bounce-in,
+  .animate-pop-in,
+  .animate-glow-pulse,
+  .animate-nyan-fly,
+  .animate-ear-wiggle,
+  .animate-tail-wag,
+  .animate-tail-wag-fast,
+  .animate-eye-sparkle,
+  .animate-speech-bubble,
+  .animate-cat-bounce,
+  .animate-cat-double-jump,
+  .animate-fire-pulse,
+  .animate-tab-nyan,
+  .animate-blink,
+  .animate-head-tilt,
+  .animate-bg-rainbow-pulse,
+  .rainbow-trail,
+  .progress-rainbow {
+    animation: none !important;
+  }
+
+  .rainbow-border::before {
+    animation: none !important;
+  }
+
+  .float-element {
+    display: none !important;
+  }
+}

@@ -2,12 +2,21 @@ import { useState, useEffect } from "react";
 import { useApi } from "../hooks/useApi.js";
 import ProgressBar from "./ProgressBar.jsx";
 import ScoreCard from "./ScoreCard.jsx";
+import KawaiiCat from "./kawaii/KawaiiCat.jsx";
+import { SparkBurst, FloatingHearts } from "./kawaii/ParticleEffects.jsx";
 
 const COUNT_OPTIONS = [5, 10, 20, "All"];
 
+const HAPPY_SPEECH = ["Nyan~!", "Sugoi!", "Pawfect!", "Yatta!", "Meow-velous!", "Purr-fect!", "Nyamazing!"];
+const ENCOURAGE_SPEECH = ["Ganbatte!", "You can do it!", "Almost nyan~!", "Don't give up!"];
+
+function pickRandom(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
 export default function QuizMode({ onReviewMistakes }) {
   const { get, loading } = useApi();
-  const [phase, setPhase] = useState("setup"); // setup | playing | scorecard
+  const [phase, setPhase] = useState("setup");
   const [categories, setCategories] = useState([]);
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [selectedCount, setSelectedCount] = useState(10);
@@ -18,9 +27,16 @@ export default function QuizMode({ onReviewMistakes }) {
   const [selectedOption, setSelectedOption] = useState(null);
   const [shortAnswer, setShortAnswer] = useState("");
   const [submitted, setSubmitted] = useState(false);
-  const [feedback, setFeedback] = useState(null); // { correct, explanation }
+  const [feedback, setFeedback] = useState(null);
 
-  // Load categories on mount
+  // Kawaii state
+  const [catMood, setCatMood] = useState("idle");
+  const [catSpeech, setCatSpeech] = useState(null);
+  const [sparkTrigger, setSparkTrigger] = useState(0);
+  const [heartTrigger, setHeartTrigger] = useState(0);
+  const [shakeIndex, setShakeIndex] = useState(null);
+  const [glowIndex, setGlowIndex] = useState(null);
+
   useEffect(() => {
     get("/api/categories").then((cats) => {
       if (cats) setCategories(cats);
@@ -55,6 +71,34 @@ export default function QuizMode({ onReviewMistakes }) {
     setShortAnswer("");
     setSubmitted(false);
     setFeedback(null);
+    setCatMood("idle");
+    setCatSpeech(null);
+    setShakeIndex(null);
+    setGlowIndex(null);
+  }
+
+  function triggerCorrectEffects(correctIndex) {
+    setCatMood("happy");
+    setCatSpeech(pickRandom(HAPPY_SPEECH));
+    setSparkTrigger((t) => t + 1);
+    setGlowIndex(correctIndex);
+    setTimeout(() => {
+      setCatMood("idle");
+      setCatSpeech(null);
+      setGlowIndex(null);
+    }, 2200);
+  }
+
+  function triggerWrongEffects(selectedIdx) {
+    setCatMood("encouraging");
+    setCatSpeech(pickRandom(ENCOURAGE_SPEECH));
+    setHeartTrigger((t) => t + 1);
+    setShakeIndex(selectedIdx);
+    setTimeout(() => {
+      setCatMood("idle");
+      setCatSpeech(null);
+      setShakeIndex(null);
+    }, 2200);
   }
 
   function submitMC(optionIndex) {
@@ -68,13 +112,18 @@ export default function QuizMode({ onReviewMistakes }) {
       ...prev,
       { correct, category: q.category, answer: q.options[optionIndex] },
     ]);
+
+    if (correct) {
+      triggerCorrectEffects(q.correct);
+    } else {
+      triggerWrongEffects(optionIndex);
+    }
   }
 
   function submitShortAnswer() {
     if (submitted || !shortAnswer.trim()) return;
     setSubmitted(true);
     const q = questions[currentIndex];
-    // Case-insensitive keyword matching — any keyword = correct
     const answer = shortAnswer.toLowerCase();
     const correct = q.keywords.some((kw) => answer.includes(kw.toLowerCase()));
     setFeedback({
@@ -87,6 +136,12 @@ export default function QuizMode({ onReviewMistakes }) {
       ...prev,
       { correct, category: q.category, answer: shortAnswer },
     ]);
+
+    if (correct) {
+      triggerCorrectEffects(null);
+    } else {
+      triggerWrongEffects(null);
+    }
   }
 
   function nextQuestion() {
@@ -234,8 +289,18 @@ export default function QuizMode({ onReviewMistakes }) {
         label="Progress"
       />
 
+      {/* Cat reaction area */}
+      {submitted && (
+        <div className="flex justify-center relative">
+          <KawaiiCat mood={catMood} size="sm" speechBubble={catSpeech} />
+          <FloatingHearts trigger={heartTrigger} />
+        </div>
+      )}
+
       {/* Question card */}
-      <div className="bg-white rounded-2xl border border-sakura-100 p-6">
+      <div className="bg-white rounded-2xl border border-sakura-100 p-6 relative">
+        <SparkBurst trigger={sparkTrigger} count={10} />
+
         <div className="flex items-start justify-between mb-4">
           <span className="category-pill bg-lavender-100 text-lavender-500">
             {q.category}
@@ -253,12 +318,15 @@ export default function QuizMode({ onReviewMistakes }) {
             {q.options.map((opt, i) => {
               let btnStyle =
                 "bg-sakura-50 text-text-primary hover:bg-sakura-100 border-sakura-100";
+              let extraClass = "";
 
               if (submitted) {
                 if (i === q.correct) {
                   btnStyle = "bg-mint-100 text-mint-600 border-mint-300 ring-2 ring-mint-300";
+                  if (glowIndex === i) extraClass = "animate-glow-pulse";
                 } else if (i === selectedOption && !feedback.correct) {
                   btnStyle = "bg-red-100 text-red-600 border-red-300 ring-2 ring-red-300";
+                  if (shakeIndex === i) extraClass = "animate-gentle-shake";
                 } else {
                   btnStyle = "bg-gray-50 text-gray-400 border-gray-100";
                 }
@@ -269,7 +337,7 @@ export default function QuizMode({ onReviewMistakes }) {
                   key={i}
                   onClick={() => submitMC(i)}
                   disabled={submitted}
-                  className={`w-full text-left py-3 px-4 rounded-xl font-semibold text-sm border btn-bounce transition-all ${btnStyle}`}
+                  className={`w-full text-left py-3 px-4 rounded-xl font-semibold text-sm border btn-bounce transition-all ${btnStyle} ${extraClass}`}
                 >
                   {opt}
                 </button>

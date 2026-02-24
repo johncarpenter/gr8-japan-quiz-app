@@ -1,7 +1,42 @@
+import { useState, useEffect } from "react";
+import KawaiiCat from "./kawaii/KawaiiCat.jsx";
+import { SparkBurst, FloatingHearts, RainbowExplosion } from "./kawaii/ParticleEffects.jsx";
+
 export default function ScoreCard({ results, questions, onReviewMistakes, onTryAgain }) {
   const total = results.length;
   const correct = results.filter((r) => r.correct).length;
   const pct = total > 0 ? Math.round((correct / total) * 100) : 0;
+
+  // Kawaii state
+  const [confettiTrigger, setConfettiTrigger] = useState(0);
+  const [sparkTrigger, setSparkTrigger] = useState(0);
+  const [heartTrigger, setHeartTrigger] = useState(0);
+  const [nyanFly, setNyanFly] = useState(false);
+
+  // Determine tier
+  const tier = pct === 100 ? "perfect" : pct >= 80 ? "great" : pct >= 50 ? "good" : "encourage";
+
+  // Fire celebrations on mount
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (tier === "perfect") {
+        setConfettiTrigger(1);
+        setNyanFly(true);
+        setTimeout(() => setNyanFly(false), 2500);
+      } else if (tier === "great") {
+        setConfettiTrigger(1);
+      } else if (tier === "good") {
+        setSparkTrigger(1);
+      } else {
+        setHeartTrigger(1);
+      }
+    }, 300);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const catMood = tier === "perfect" ? "nyan" : tier === "great" ? "celebrating" : tier === "good" ? "happy" : "encouraging";
+  const catSpeech = tier === "perfect" ? "PURR-FECT SCORE!" : tier === "great" ? "Amazing nyan~!" : tier === "good" ? "Good job!" : "You can do it!";
+  const confettiIntensity = tier === "perfect" ? "epic" : tier === "great" ? "medium" : "small";
 
   // Category breakdown
   const byCategory = {};
@@ -17,7 +52,6 @@ export default function ScoreCard({ results, questions, onReviewMistakes, onTryA
     .map((r, i) => ({ ...r, question: questions[i] }))
     .filter((r) => !r.correct);
 
-  // Convert missed to flashcard format for review
   function handleReview() {
     const flashcards = missed.map((m) => ({
       id: `review-${m.question.id}`,
@@ -35,22 +69,36 @@ export default function ScoreCard({ results, questions, onReviewMistakes, onTryA
   // Color based on score
   let accentColor = "text-mint-500";
   let bgColor = "bg-mint-100";
-  let emoji = "\uD83C\uDF89";
   if (pct < 50) {
     accentColor = "text-sakura-500";
     bgColor = "bg-sakura-100";
-    emoji = "\uD83D\uDCAA";
   } else if (pct < 80) {
     accentColor = "text-amber-500";
     bgColor = "bg-amber-100";
-    emoji = "\uD83C\uDF1F";
   }
 
   return (
     <div className="space-y-6 animate-slide-in">
+      {/* Confetti + particles */}
+      <RainbowExplosion trigger={confettiTrigger} intensity={confettiIntensity} />
+
+      {/* Nyan cat flying across for perfect score */}
+      {nyanFly && (
+        <div className="fixed top-1/4 left-0 z-50 animate-nyan-fly pointer-events-none">
+          <KawaiiCat mood="nyan" size="lg" />
+        </div>
+      )}
+
       {/* Score */}
-      <div className={`${bgColor} rounded-2xl p-8 text-center`}>
-        <div className="text-5xl mb-3">{emoji}</div>
+      <div className={`${bgColor} rounded-2xl p-8 text-center relative overflow-visible`}>
+        <SparkBurst trigger={sparkTrigger} count={12} />
+        <FloatingHearts trigger={heartTrigger} />
+
+        {/* Cat mascot */}
+        <div className="flex justify-center mb-3">
+          <KawaiiCat mood={catMood} size="lg" speechBubble={catSpeech} />
+        </div>
+
         <div className={`text-4xl font-extrabold ${accentColor} animate-count-up`}>
           {correct}/{total}
         </div>

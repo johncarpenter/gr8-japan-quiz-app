@@ -1,6 +1,8 @@
 import { useState, useEffect, useCallback } from "react";
 import { useApi } from "../hooks/useApi.js";
 import ProgressBar from "./ProgressBar.jsx";
+import KawaiiCat from "./kawaii/KawaiiCat.jsx";
+import { SparkBurst, FloatingHearts, RainbowExplosion } from "./kawaii/ParticleEffects.jsx";
 
 const BUCKET_LABELS = ["Learning", "Reviewing", "Mastered"];
 const BUCKET_COLORS = [
@@ -9,8 +11,15 @@ const BUCKET_COLORS = [
   "bg-mint-200 text-mint-500",
 ];
 
+const HAPPY_SPEECH = ["Nyan~!", "Sugoi!", "Pawfect!", "Yatta!", "Meow-velous!", "Purr-fect!", "Nyamazing!"];
+const ENCOURAGE_SPEECH = ["Ganbatte!", "You can do it!", "Almost nyan~!", "Don't give up!"];
+const STREAK_SPEECH = ["On fire!", "Unstoppable!", "Nyantastic!"];
+
+function pickRandom(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
 function pickWeightedCard(buckets, lastCardId) {
-  // Weight: bucket 0 = 6, bucket 1 = 3, bucket 2 = 1
   const weights = [6, 3, 1];
   const weighted = [];
   buckets.forEach((bucket, bi) => {
@@ -21,10 +30,8 @@ function pickWeightedCard(buckets, lastCardId) {
     });
   });
 
-  // Filter out last card to avoid repeats
   const candidates = weighted.filter((c) => c.id !== lastCardId);
   if (candidates.length === 0) {
-    // Only one card left, allow repeat
     return weighted.length > 0 ? weighted[0] : null;
   }
   return candidates[Math.floor(Math.random() * candidates.length)];
@@ -33,15 +40,28 @@ function pickWeightedCard(buckets, lastCardId) {
 export default function FlashMode({ reviewDeck, onClearReviewDeck }) {
   const { get, loading, error } = useApi();
   const [cards, setCards] = useState([]);
-  const [buckets, setBuckets] = useState([[], [], []]); // [learning, reviewing, mastered]
-  const [streaks, setStreaks] = useState({}); // cardId -> consecutive "got it" count
+  const [buckets, setBuckets] = useState([[], [], []]);
+  const [streaks, setStreaks] = useState({});
   const [currentCard, setCurrentCard] = useState(null);
   const [flipped, setFlipped] = useState(false);
   const [lastCardId, setLastCardId] = useState(null);
   const [allMastered, setAllMastered] = useState(false);
   const [isReviewMode, setIsReviewMode] = useState(false);
 
-  // Load cards from API or review deck
+  // Kawaii state
+  const [globalStreak, setGlobalStreak] = useState(0);
+  const [lastAction, setLastAction] = useState(null); // "gotit" | "notyet" | null
+  const [catMood, setCatMood] = useState("idle");
+  const [catSpeech, setCatSpeech] = useState(null);
+  const [sparkTrigger, setSparkTrigger] = useState(0);
+  const [sparkCount, setSparkCount] = useState(8);
+  const [heartTrigger, setHeartTrigger] = useState(0);
+  const [confettiTrigger, setConfettiTrigger] = useState(0);
+  const [confettiIntensity, setConfettiIntensity] = useState("medium");
+  const [cardWiggle, setCardWiggle] = useState(false);
+  const [cardShake, setCardShake] = useState(false);
+  const [nyanFly, setNyanFly] = useState(false);
+
   useEffect(() => {
     if (reviewDeck && reviewDeck.length > 0) {
       initializeDeck(reviewDeck);
@@ -67,7 +87,11 @@ export default function FlashMode({ reviewDeck, onClearReviewDeck }) {
     setAllMastered(false);
     setFlipped(false);
     setLastCardId(null);
-    // Pick first card
+    setGlobalStreak(0);
+    setLastAction(null);
+    setCatMood("idle");
+    setCatSpeech(null);
+    setNyanFly(false);
     setCurrentCard(shuffled[0] || null);
   }
 
@@ -76,6 +100,73 @@ export default function FlashMode({ reviewDeck, onClearReviewDeck }) {
       if (buckets[b].some((c) => c.id === cardId)) return b;
     }
     return 0;
+  }
+
+  // Trigger kawaii effects based on streak
+  function triggerGotItEffects(newStreak) {
+    setLastAction("gotit");
+
+    // Card wiggle
+    setCardWiggle(true);
+    setTimeout(() => setCardWiggle(false), 500);
+
+    if (newStreak >= 7) {
+      // Full celebration mode
+      setCatMood("celebrating");
+      setCatSpeech(`${newStreak}x Streak! ${pickRandom(STREAK_SPEECH)}`);
+      setSparkCount(20);
+      setSparkTrigger((t) => t + 1);
+      setConfettiIntensity("medium");
+      setConfettiTrigger((t) => t + 1);
+    } else if (newStreak >= 4) {
+      // Streak badge + star eyes
+      setCatMood("celebrating");
+      setCatSpeech(`${newStreak}x! ${pickRandom(HAPPY_SPEECH)}`);
+      setSparkCount(14);
+      setSparkTrigger((t) => t + 1);
+    } else if (newStreak >= 2) {
+      // More sparkles, cat double-jump
+      setCatMood("happy");
+      setCatSpeech(pickRandom(HAPPY_SPEECH));
+      setSparkCount(10);
+      setSparkTrigger((t) => t + 1);
+    } else {
+      setCatMood("happy");
+      setCatSpeech(pickRandom(HAPPY_SPEECH));
+      setSparkCount(8);
+      setSparkTrigger((t) => t + 1);
+    }
+
+    // Reset mood after delay
+    setTimeout(() => {
+      setCatMood("idle");
+      setCatSpeech(null);
+    }, 2200);
+  }
+
+  function triggerNotYetEffects() {
+    setLastAction("notyet");
+    setCatMood("encouraging");
+    setCatSpeech(pickRandom(ENCOURAGE_SPEECH));
+    setHeartTrigger((t) => t + 1);
+
+    // Gentle shake
+    setCardShake(true);
+    setTimeout(() => setCardShake(false), 400);
+
+    setTimeout(() => {
+      setCatMood("idle");
+      setCatSpeech(null);
+    }, 2200);
+  }
+
+  function triggerAllMasteredEffects() {
+    setCatMood("nyan");
+    setCatSpeech("PURR-FECT! All mastered! 🌈");
+    setConfettiIntensity("epic");
+    setConfettiTrigger((t) => t + 1);
+    setNyanFly(true);
+    setTimeout(() => setNyanFly(false), 2500);
   }
 
   const handleGotIt = useCallback(() => {
@@ -87,28 +178,33 @@ export default function FlashMode({ reviewDeck, onClearReviewDeck }) {
     setStreaks(newStreaks);
 
     const newBuckets = buckets.map((b) => [...b]);
-    // Remove from current bucket
     newBuckets[currentBucket] = newBuckets[currentBucket].filter(
       (c) => c.id !== cardId
     );
 
-    // Move to next bucket (max bucket 2)
     const nextBucket = Math.min(currentBucket + 1, 2);
     newBuckets[nextBucket].push(currentCard);
     setBuckets(newBuckets);
+
+    // Update global streak
+    const newGlobalStreak = globalStreak + 1;
+    setGlobalStreak(newGlobalStreak);
 
     // Check if all mastered
     if (newBuckets[0].length === 0 && newBuckets[1].length === 0) {
       setAllMastered(true);
       setCurrentCard(null);
+      triggerAllMasteredEffects();
       return;
     }
+
+    triggerGotItEffects(newGlobalStreak);
 
     setLastCardId(cardId);
     setFlipped(false);
     const next = pickWeightedCard(newBuckets, cardId);
     setCurrentCard(next);
-  }, [currentCard, flipped, buckets, streaks]);
+  }, [currentCard, flipped, buckets, streaks, globalStreak]);
 
   const handleNotYet = useCallback(() => {
     if (!currentCard || !flipped) return;
@@ -119,13 +215,14 @@ export default function FlashMode({ reviewDeck, onClearReviewDeck }) {
     setStreaks(newStreaks);
 
     const newBuckets = buckets.map((b) => [...b]);
-    // Remove from current bucket
     newBuckets[currentBucket] = newBuckets[currentBucket].filter(
       (c) => c.id !== cardId
     );
-    // Always drop to bucket 0
     newBuckets[0].push(currentCard);
     setBuckets(newBuckets);
+
+    setGlobalStreak(0);
+    triggerNotYetEffects();
 
     setLastCardId(cardId);
     setFlipped(false);
@@ -201,9 +298,20 @@ export default function FlashMode({ reviewDeck, onClearReviewDeck }) {
   // All mastered state
   if (allMastered) {
     return (
-      <div className="text-center py-12 animate-slide-in">
-        <div className="text-6xl mb-4">{"\uD83C\uDF89"}</div>
-        <h2 className="text-2xl font-extrabold text-text-primary mb-2">
+      <div className={`text-center py-12 animate-slide-in ${nyanFly ? "animate-bg-rainbow-pulse" : ""}`}>
+        <RainbowExplosion trigger={confettiTrigger} intensity="epic" />
+
+        {/* Nyan cat flying across */}
+        {nyanFly && (
+          <div className="fixed top-1/3 left-0 z-50 animate-nyan-fly pointer-events-none">
+            <KawaiiCat mood="nyan" size="lg" />
+          </div>
+        )}
+
+        <div className="mb-4">
+          <KawaiiCat mood="celebrating" size="lg" speechBubble="PURR-FECT! 🌈" />
+        </div>
+        <h2 className="text-2xl font-extrabold text-text-primary mb-2 animate-bounce-in">
           All Mastered!
         </h2>
         <p className="text-text-secondary mb-6">
@@ -233,8 +341,14 @@ export default function FlashMode({ reviewDeck, onClearReviewDeck }) {
 
   const currentBucket = findCardBucket(currentCard.id);
 
+  // Card animation class
+  const cardAnimClass = cardWiggle ? "animate-happy-wiggle" : cardShake ? "animate-gentle-shake" : "";
+
   return (
     <div className="space-y-4">
+      {/* Confetti + hearts layer */}
+      <RainbowExplosion trigger={confettiTrigger} intensity={confettiIntensity} />
+
       {/* Header info */}
       <div className="flex items-center justify-between">
         <div className="flex gap-2">
@@ -247,30 +361,61 @@ export default function FlashMode({ reviewDeck, onClearReviewDeck }) {
             </span>
           ))}
         </div>
-        {isReviewMode && (
-          <span className="category-pill bg-lavender-200 text-lavender-500">
-            Review Mode
-          </span>
-        )}
+        <div className="flex gap-2 items-center">
+          {isReviewMode && (
+            <span className="category-pill bg-lavender-200 text-lavender-500">
+              Review Mode
+            </span>
+          )}
+        </div>
       </div>
 
       <ProgressBar
         current={buckets[2].length}
         total={totalCards}
         label="Mastered"
+        streakActive={globalStreak >= 4}
       />
+
+      {/* Cat mascot + streak badge */}
+      <div className="flex items-center justify-center gap-3 relative">
+        <div className="relative">
+          <KawaiiCat mood={catMood} size="md" speechBubble={catSpeech} />
+          <FloatingHearts trigger={heartTrigger} />
+        </div>
+
+        {/* Streak badge */}
+        {globalStreak >= 4 && (
+          <div
+            className={`animate-pop-in rounded-full px-3 py-1.5 font-extrabold text-sm flex items-center gap-1 ${
+              globalStreak >= 7
+                ? "bg-gradient-to-r from-sakura-400 to-lavender-400 text-white rainbow-border"
+                : "bg-amber-100 text-amber-600"
+            }`}
+          >
+            <span className={globalStreak >= 7 ? "animate-fire-pulse" : ""}>
+              {globalStreak >= 7 ? "🔥" : "⚡"}
+            </span>
+            {globalStreak}x Streak!
+          </div>
+        )}
+      </div>
 
       {/* Flashcard */}
       <div
-        className="card-flip-container cursor-pointer"
+        className={`card-flip-container cursor-pointer relative ${cardAnimClass}`}
         onClick={handleFlip}
         role="button"
         tabIndex={0}
         aria-label={flipped ? "Answer side. Click to flip back." : "Question side. Click to flip."}
       >
+        {/* Sparkle burst on card */}
+        <SparkBurst trigger={sparkTrigger} count={sparkCount} />
+
+        {/* Rainbow border on card during high streak */}
         <div className={`card-flip-inner ${flipped ? "flipped" : ""}`}>
           {/* Front */}
-          <div className="card-front bg-white rounded-2xl shadow-lg border border-sakura-100 p-8 min-h-[240px] flex flex-col">
+          <div className={`card-front bg-white rounded-2xl shadow-lg border ${globalStreak >= 7 ? "border-transparent rainbow-border" : "border-sakura-100"} p-8 min-h-[240px] flex flex-col`}>
             <div className="flex justify-between items-start mb-4">
               <span className={`category-pill ${BUCKET_COLORS[currentBucket]}`}>
                 {currentCard.category}
@@ -287,7 +432,7 @@ export default function FlashMode({ reviewDeck, onClearReviewDeck }) {
           </div>
 
           {/* Back */}
-          <div className="card-back absolute inset-0 bg-white rounded-2xl shadow-lg border border-lavender-200 p-8 min-h-[240px] flex flex-col">
+          <div className={`card-back absolute inset-0 bg-white rounded-2xl shadow-lg border ${globalStreak >= 7 ? "border-transparent rainbow-border" : "border-lavender-200"} p-8 min-h-[240px] flex flex-col`}>
             <div className="flex justify-between items-start mb-4">
               <span className={`category-pill ${BUCKET_COLORS[currentBucket]}`}>
                 {currentCard.category}
