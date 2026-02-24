@@ -414,8 +414,30 @@ export default function FlashMode({ reviewDeck, onClearReviewDeck }) {
 
         {/* Rainbow border on card during high streak */}
         <div className={`card-flip-inner ${flipped ? "flipped" : ""}`}>
+          {/* Invisible sizer: renders both sides to set container height */}
+          <div className="invisible" aria-hidden="true">
+            <div className={`p-6 sm:p-8 min-h-[240px] flex flex-col`}>
+              <div className="flex justify-between items-start mb-4">
+                <span className="category-pill">&nbsp;</span>
+                <span className="text-xs">&nbsp;</span>
+              </div>
+              <div className="flex-1 flex items-center justify-center">
+                <p className="text-lg font-bold text-center leading-relaxed">{currentCard.front}</p>
+              </div>
+            </div>
+            <div className={`p-6 sm:p-8 min-h-[240px] flex flex-col`}>
+              <div className="flex justify-between items-start mb-4">
+                <span className="category-pill">&nbsp;</span>
+                <span className="text-xs">&nbsp;</span>
+              </div>
+              <div className="flex-1 flex items-center justify-center">
+                <p className="text-sm sm:text-base text-center leading-relaxed">{currentCard.back}</p>
+              </div>
+            </div>
+          </div>
+
           {/* Front */}
-          <div className={`card-front bg-white rounded-2xl shadow-lg border ${globalStreak >= 7 ? "border-transparent rainbow-border" : "border-sakura-100"} p-8 min-h-[240px] flex flex-col`}>
+          <div className={`card-front absolute inset-0 bg-white rounded-2xl shadow-lg border ${globalStreak >= 7 ? "border-transparent rainbow-border" : "border-sakura-100"} p-6 sm:p-8 flex flex-col`}>
             <div className="flex justify-between items-start mb-4">
               <span className={`category-pill ${BUCKET_COLORS[currentBucket]}`}>
                 {currentCard.category}
@@ -432,8 +454,8 @@ export default function FlashMode({ reviewDeck, onClearReviewDeck }) {
           </div>
 
           {/* Back */}
-          <div className={`card-back absolute inset-0 bg-white rounded-2xl shadow-lg border ${globalStreak >= 7 ? "border-transparent rainbow-border" : "border-lavender-200"} p-8 min-h-[240px] flex flex-col`}>
-            <div className="flex justify-between items-start mb-4">
+          <div className={`card-back absolute inset-0 bg-white rounded-2xl shadow-lg border ${globalStreak >= 7 ? "border-transparent rainbow-border" : "border-lavender-200"} p-6 sm:p-8 flex flex-col overflow-y-auto`}>
+            <div className="flex justify-between items-start mb-4 shrink-0">
               <span className={`category-pill ${BUCKET_COLORS[currentBucket]}`}>
                 {currentCard.category}
               </span>
@@ -442,7 +464,7 @@ export default function FlashMode({ reviewDeck, onClearReviewDeck }) {
               </span>
             </div>
             <div className="flex-1 flex items-center justify-center">
-              <p className="text-base text-center leading-relaxed text-text-primary">
+              <p className="text-sm sm:text-base text-center leading-relaxed text-text-primary">
                 {currentCard.back}
               </p>
             </div>
